@@ -35,10 +35,9 @@ describe(Store) do
   describe('#brands') do
     it('add brands to a store') do
       test_store = Store.create({:name => 'Foot Heaven'})
-      
-      brand_1 = Shoe.create({:name => 'Nike'})
-      brand_2 = Shoe.create({:name => 'New Balance'})
-
+      brand_1 = test_store.brands.create({:name => 'Nike'})
+      brand_2 = test_store.brands.create({:name => 'New Balance'})
+      expect(test_store.brands()).to(eq([brand_1, brand_2]))
     end
   end
 end
