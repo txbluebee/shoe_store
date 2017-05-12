@@ -32,14 +32,6 @@ get('/stores/view/:id') do
   erb(:store)
 end
 
-#edit individual store
-get('/stores/view/:id/edit') do
-  store_id = params.fetch('id').to_i()
-  @store = Store.find(store_id)
-  @brands = Brand.all()
-  erb(:store_edit_form)
-end
-
 patch('/stores/view/:id/edit/name') do
   store_id = params.fetch('id').to_i()
   @store = Store.find(store_id)
@@ -57,6 +49,13 @@ patch('/stores/view/:id/edit/brand') do
     @store.brands.push(brand)
   end
   redirect('/stores/view/'.concat(store_id.to_s()))
+end
+
+delete("/stores/view/:id/edit/delete") do
+  store_id = params.fetch('id').to_i()
+  @store = Store.find(store_id)
+  @store.delete()
+  redirect('/')
 end
 
 #view all brands
