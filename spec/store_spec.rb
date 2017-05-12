@@ -7,6 +7,22 @@ describe(Store) do
     expect(test_store.name()).to(eq('Foot Heaven'))
   end
 
+  it('validates the presence of name') do
+    test_store = Store.new({:name => ''})
+    expect(test_store.save()).to(eq(false))
+  end
+
+  it("ensures the length of description is at most 100 characters") do
+    test_store = Store.new({:name => 'a'.*(101)})
+    expect(test_store.save()).to(eq(false))
+  end
+
+  it("ensures all brands are unique") do
+    store_1 = Store.create({:name => 'Foot Heaven'})
+    store_2 = Store.new({:name => 'Foot Heaven'})
+    expect(store_2.save()).to(eq(false))
+  end
+
   # add shoe store
   describe('#name') do
     it('returns the name of the store') do
