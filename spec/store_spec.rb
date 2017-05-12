@@ -1,10 +1,16 @@
 require('spec_helper')
 
 describe(Store) do
+  #save store names with capital letter
+  it('capitalize the name of the store when saved') do
+    test_store = Store.create({:name => 'foot heaven'})
+    expect(test_store.name()).to(eq('Foot Heaven'))
+  end
+
   # add shoe store
   describe('#name') do
     it('returns the name of the store') do
-      test_store = Store.create({:name => 'Foot Heaven'})
+      test_store = Store.create({:name => 'foot heaven'})
       expect(test_store.name()).to(eq('Foot Heaven'))
     end
   end
@@ -12,7 +18,7 @@ describe(Store) do
   describe('#update') do
     it('update the name of the store') do
       test_store = Store.create({:name => 'Foot Heaven'})
-      test_store.update({:name => 'Foot Paradise'})
+      test_store.update({:name => 'Foot paradise'})
       expect(test_store.name()).to(eq('Foot Paradise'))
     end
   end
