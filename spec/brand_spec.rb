@@ -31,4 +31,10 @@ describe(Brand) do
       expect(test_brand.name()).to(eq('Nike'))
     end
   end
+  describe('#price') do
+    it('returns the price of the brand') do
+      test_brand = Brand.create({:price => 5.99})
+      expect(test_brand.price()).to(eq(5.99))
+    end
+  end
 end

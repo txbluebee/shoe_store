@@ -1,0 +1,22 @@
+<h1>Add a Brand</h1>
+<form action="/brands/new" method="post">
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input id="name" name="name" type="text"  class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="price">Price: </label>
+    <input id="price" name="price" type="text"  class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<!-- Error Messages -->
+<% if (@new_brand != nil ) && (@new_brand.errors().any?()) %>
+  <h3>Error: </h3>
+  <ul>
+  <% @new_brand.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>

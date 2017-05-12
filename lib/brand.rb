@@ -3,6 +3,7 @@ class Brand < ActiveRecord::Base
   validates :name, :presence => true,
                    :length => {:minimum => 3, :maximum => 100},
                    :uniqueness => true
+  validates_numericality_of :price, :presence => true
 
   before_save :capitalize_name
 
