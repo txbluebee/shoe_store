@@ -6,3 +6,13 @@
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+<!-- Error Messages -->
+<% if (@new_store != nil ) && (@new_store.errors().any?()) %>
+  <h3>Error: </h3>
+  <ul>
+  <% @new_store.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>

@@ -17,11 +17,15 @@ end
 #post new store
 post('/stores/new') do
   name = params.fetch('name')
-  store = Store.create({:name => name})
-  redirect('/')
+  @new_store = Store.new({:name => name})
+  if @new_store.save()
+    redirect('/')
+  else
+    erb(:store_form)
+  end  
 end
 #view individual store
-get('/stores/view/:id')do
+get('/stores/view/:id') do
   store_id = params.fetch('id').to_i()
   @store = Store.find(store_id)
   erb(:store)
