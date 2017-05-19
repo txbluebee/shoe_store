@@ -3,7 +3,8 @@ require('spec_helper')
 describe(Brand) do
   #save brand names with capital letter
   it('capitalize the name of the brand when saved') do
-    brand = Brand.create({:name => 'hello'})
+    brand = Brand.new({:name => 'hello'})
+    brand.save()
     expect(brand.name()).to(eq('Hello'))
   end
 
